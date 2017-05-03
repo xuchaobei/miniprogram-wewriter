@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/feedback/feedback",
+    "pages/logs/logs"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"bold",
+    "navigationBarBackgroundColor": "#ff7000",
+    "navigationBarTitleText": "笔耕不辍",
+    "navigationBarTextStyle":"white"
+  }
+}

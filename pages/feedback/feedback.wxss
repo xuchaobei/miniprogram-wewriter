@@ -1,0 +1,22 @@
+.container {
+    text-align: center;
+}
+
+image {
+  width: 100px;
+  height: 100px;
+}
+
+.title {
+  margin-bottom: 30px; 
+  font-size: 20px;
+}
+
+.item {
+  margin-bottom: 20px; 
+  font-weight: bold;
+}
+
+.number {
+  color: blue;
+}
