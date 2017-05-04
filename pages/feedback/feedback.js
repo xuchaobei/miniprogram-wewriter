@@ -11,7 +11,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: app.globalData.server + "/mini/record/" + encodeURIComponent(option.user),
+      url: app.globalData.server + "/record/mini/" + encodeURIComponent(option.user),
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function(res){
