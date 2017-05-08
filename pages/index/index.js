@@ -7,6 +7,8 @@ Page({
     user: '',
     name: '',
     date: util.formatDate(new Date()),
+    title: '',
+    word_count: '',
     term: '',
     hidden: 'hidden',
   },
@@ -60,8 +62,9 @@ Page({
       // header: {}, // 设置请求的 header
       success: function(res){
         // success
+        wx.hideLoading();
         if(res.data && res.data.code == "2000") {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../feedback/feedback?user=' + e.detail.value.user
           })
         }else {
@@ -83,7 +86,7 @@ Page({
     })
   },
   onLoad: function () {
-    var that = this
+    var that = this;
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据

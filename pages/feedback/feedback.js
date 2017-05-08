@@ -29,5 +29,9 @@ Page({
         // complete
       }
     })
+  },
+  onUnload: function() {
+    // Do something when page close.
+    //wx.navigateBack();
   }
 })

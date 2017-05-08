@@ -15,11 +15,11 @@
     </view>
     <view class="section">
       <view class="section-title">文章标题</view>
-      <input name="title" />
+      <input name="title" maxlength="50" value="{{title}}"/>
     </view>
     <view class="section">
       <view class="section-title">写作字数</view>
-      <input name="word_count" />
+      <input name="word_count" type="number" maxlength="8" value="{{word_count}}"/>
     </view>
     <view class="btn-area">
       <button formType="submit">打卡</button>
