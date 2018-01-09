@@ -40,7 +40,7 @@ Page({
       fail: function(res) {
         // fail
          wx.showToast({
-            title: '注册失败'+res,
+            title: '注册失败'+res.errMsg,
             icon: 'success',
             duration: 3000,
           })
@@ -78,7 +78,7 @@ Page({
       fail: function(res) {
         // fail
         wx.showToast({
-          title: res.data,
+          title: res.errMsg,
           icon: 'success',
           duration: 3000
         })
@@ -108,11 +108,11 @@ Page({
       },
       fail: function(res) {
         // fail
-         wx.showToast({
-            title: res,
-            icon: 'success',
-            duration: 3000,
-         })
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'success',
+          duration: 3000,
+        })
       },
       complete: function(res) {
         // complete
