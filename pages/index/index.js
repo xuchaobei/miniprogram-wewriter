@@ -26,7 +26,6 @@ Page({
         if(res.data.message) {
            wx.showToast({
             title: res.data.message,
-            icon: 'success',
             duration: 3000,
           })
         }else if(res.data.code) {
@@ -41,7 +40,6 @@ Page({
         // fail
          wx.showToast({
             title: '注册失败'+res.errMsg,
-            icon: 'success',
             duration: 3000,
           })
       },
@@ -70,7 +68,6 @@ Page({
         }else {
           wx.showToast({
             title: res.data.message,
-            icon: 'success',
             duration: 3000,
           })
         }
@@ -79,7 +76,6 @@ Page({
         // fail
         wx.showToast({
           title: res.errMsg,
-          icon: 'success',
           duration: 3000
         })
       },
@@ -110,7 +106,6 @@ Page({
         // fail
         wx.showToast({
           title: res.errMsg,
-          icon: 'success',
           duration: 3000,
         })
       },

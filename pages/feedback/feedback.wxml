@@ -4,4 +4,5 @@
     <view class="item">您已连续打卡<text class="number">{{continuous_count}}</text>天</view>
     <view class="item">累积打卡<text class="number">{{total_count}}</text>天</view>
     <view class="item">累计写作字数<text class="number">{{total_word}}</text>字</view>
+    <button bindtap="share"> 生成日签 </button>
 </view>
