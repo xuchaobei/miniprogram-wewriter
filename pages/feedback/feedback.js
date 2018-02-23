@@ -1,4 +1,4 @@
-
+var util = require('../../utils/util.js');
 var app = getApp();
 
 Page({
@@ -53,7 +53,8 @@ Page({
       data: { 
         userId: userInfo.userId,
         nickName: userInfo.nickName,
-        avatarUrl: userInfo.avatarUrl
+        avatarUrl: userInfo.avatarUrl,
+        date: util.formatDate(new Date()),
       },
       method: 'POST',
       success: function (res) {

@@ -42,6 +42,7 @@ App({
   },
   globalData:{
     userInfo:null,
-    server:"https://wewriter.ga"
+    server:"https://wewriter.xin"
+    //server: "http://172.16.53.167:3000"
   }
 })
