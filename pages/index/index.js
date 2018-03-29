@@ -62,7 +62,7 @@ Page({
         // success
         wx.hideLoading();
         if(res.data && res.data.code == "2000") {
-          wx.redirectTo({
+          wx.navigateTo({
             url: '../feedback/feedback?user=' + e.detail.value.user
           })
         }else {
