@@ -24,6 +24,9 @@
     <view class="btn-area">
       <button formType="submit">打卡</button>
     </view>
+    <view class="btn-area">
+      <button bindtap="getSharePic">查看日签</button>
+    </view>
   </form>
   <view hover="true" class="register" bindtap="register">
     <text id="register" class="{{hidden}}">第{{term}}期写作训练营登记</text>

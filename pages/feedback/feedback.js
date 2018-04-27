@@ -7,33 +7,27 @@ Page({
     total_count: '',
     total_word: ''
   },
+
   onLoad: function (option) {
     var that = this;
-
     wx.request({
       url: app.globalData.server + "/record/mini/" + encodeURIComponent(option.user),
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      success: function(res){
+      method: 'GET',
+      success: function (res) {
         // success
         that.setData({
-            continuous_count: res.data.continuousCount,
-            total_count: res.data.totalCount,
-            total_word: res.data.totalWords
+          continuous_count: res.data.continuousCount,
+          total_count: res.data.totalCount,
+          total_word: res.data.totalWords
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // fail
       },
-      complete: function(res) {
+      complete: function (res) {
         // complete
       }
     })
-  },
-
-  onUnload: function() {
-    // Do something when page close.
-    //wx.navigateBack();
   },
 
   share: function () {
@@ -50,7 +44,7 @@ Page({
   getSharePic: function (userInfo) {
     wx.request({
       url: app.globalData.server + '/share',
-      data: { 
+      data: {
         userId: userInfo.userId,
         nickName: userInfo.nickName,
         avatarUrl: userInfo.avatarUrl,
@@ -59,12 +53,12 @@ Page({
       method: 'POST',
       success: function (res) {
         if (res.data.message) {
-          wx.showToast({
-            title: res.data.message,
-            duration: 3000,
+          wx.showModal({
+            title: '提示',
+            content: res.data.message,
+            showCancel: false,
           })
         } else if (res.data.code === 2000) {
-          wx.hideLoading();
           wx.previewImage({
             current: '', // 当前显示图片的http链接
             urls: [res.data.url] // 需要预览的图片http链接列表
@@ -72,14 +66,14 @@ Page({
         }
       },
       fail: function (res) {
-        // fail
-        wx.showToast({
-          title: res.errMsg,
-          duration: 3000,
+        wx.showModal({
+          title: '提示',
+          content: res.errMsg,
+          showCancel: false,
         })
       },
       complete: function (res) {
-        // complete
+        wx.hideLoading();
       }
     })
   }

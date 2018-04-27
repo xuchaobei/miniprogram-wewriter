@@ -2,8 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/feedback/feedback",
-    "pages/logs/logs",
-    "pages/share/share"
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"bold",
