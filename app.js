@@ -19,14 +19,18 @@ App({
               },
               success: function(res) {        
                 if(res.data.userId) {
+                  that.globalData.userId = res.data.userId;
                   wx.getUserInfo({
                     success: function (res2) {
+                      that.globalData.authorized = true;
                       that.globalData.userInfo = res2.userInfo;
                       that.globalData.userInfo.userId = res.data.userId;
                       typeof cb == "function" && cb(that.globalData.userInfo)
+                    },
+                    fail: function (error) {
+                      that.globalData.authorized = false
                     }
                   })
-
                 }else {
                   wx.showToast({
                     title: "获取用户ID失败，请尝试重新打开",
@@ -41,8 +45,10 @@ App({
     }
   },
   globalData:{
+    userId: null,
     userInfo:null,
-    server:"https://wewriter.xin"
+    authorized: false,
+    server:"https://qingcheng.ink"
     // server: "http://172.16.47.237:3000"
   }
 })

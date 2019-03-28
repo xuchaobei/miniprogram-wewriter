@@ -3,6 +3,17 @@ form {
   font-weight: bold;
 }
 
+.flex-wrp {
+  display: flex;
+  flex-direction: row; 
+}
+
+.btn-inline {
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .section {
   margin-bottom: 20px; 
 }

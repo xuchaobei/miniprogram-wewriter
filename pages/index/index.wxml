@@ -3,23 +3,30 @@
   <form bindsubmit="formSubmit">
     <view class="section" style="display:none">
       <view class="section-title">用户ID</view>
-      <input name="user" disabled="true" focus="false"  value="{{user}}" />
+      <input name="user" disabled="true" focus="false" value="{{user}}" />
     </view>
     <view class="section">
       <view class="section-title">打卡日期</view>
-      <input name="date" disabled="true" focus="false"  value="{{date}}" />
+      <input name="date" disabled="true" focus="false" value="{{date}}" />
     </view>
     <view class="section">
-      <view class="section-title">微信昵称</view>
-      <input name="name" disabled="true" focus="false"  value="{{name}}"/>
+      <view class="flex-wrp">
+        <view class="section-title">微信昵称</view>
+        <view wx:if="{{!authorized}}">
+          <button class="btn-inline" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+            获取昵称
+          </button>
+        </view>
+      </view>
+      <input name="name" disabled="true" focus="false" value="{{name}}" />
     </view>
     <view class="section">
       <view class="section-title">文章标题</view>
-      <input name="title" maxlength="50" value="{{title}}"/>
+      <input name="title" maxlength="50" value="{{title}}" />
     </view>
     <view class="section">
       <view class="section-title">写作字数</view>
-      <input name="word_count" type="number" maxlength="8" value="{{word_count}}"/>
+      <input name="word_count" type="number" maxlength="8" value="{{word_count}}" />
     </view>
     <view class="btn-area">
       <button formType="submit">打卡</button>

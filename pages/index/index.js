@@ -5,13 +5,14 @@ var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    user: '',
+    user: app.globalData.userId,
     name: '',
     date: util.formatDate(new Date()),
     title: '',
     word_count: '',
     term: '',
     hidden: 'hidden',
+    authorized: app.globalData.authorized
   },
 
   onLoad: function () {
@@ -20,8 +21,9 @@ Page({
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
+        user: userInfo.userId,
         name: userInfo.nickName,
-        user: userInfo.userId
+        authorized: app.globalData.authorized
       })
     });
     wx.request({
@@ -44,6 +46,18 @@ Page({
         })
       },
     })
+  },
+
+  onGotUserInfo: function (e) {
+    var userInfo = e.detail.userInfo
+    app.globalData.authorized = true;
+    app.globalData.userInfo = userInfo;
+    app.globalData.userInfo.userId = app.globalData.userId;
+    this.setData({
+      user: app.globalData.userId,
+      name: userInfo.nickName,
+      authorized: true
+    });
   },
 
   register: function () {

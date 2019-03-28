@@ -5,7 +5,7 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"bold",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#ff7000",
     "navigationBarTitleText": "笔耕不辍",
     "navigationBarTextStyle":"white"
