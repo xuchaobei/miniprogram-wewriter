@@ -10,6 +10,7 @@ Page({
     date: util.formatDate(new Date()),
     title: '',
     word_count: '',
+    article_link: '',
     term: '',
     hidden: 'hidden',
     authorized: app.globalData.authorized
@@ -26,30 +27,34 @@ Page({
         authorized: app.globalData.authorized
       })
     });
-    wx.request({
-      url: app.globalData.server + '/camp',
-      method: 'GET',
-      success: function (res) {
-        if (res.data.term) {
-          that.setData({
-            term: res.data.term,
-            hidden: ''
-          });
-        }
-      },
-      fail: function (res) {
-        // fail
-        wx.showModal({
-          title: '提示',
-          content: res.errMsg,
-          showCancel: false,
-        })
-      },
-    })
+    // wx.request({
+    //   url: app.globalData.server + '/camp',
+    //   method: 'GET',
+    //   success: function (res) {
+    //     if (res.data.term) {
+    //       that.setData({
+    //         term: res.data.term,
+    //         hidden: ''
+    //       });
+    //     }
+    //   },
+    //   fail: function (res) {
+    //     // fail
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: res.errMsg,
+    //       showCancel: false,
+    //     })
+    //   },
+    // })
   },
 
   onGotUserInfo: function (e) {
     var userInfo = e.detail.userInfo
+    //用户未同意授权
+    if(!userInfo){
+      return;
+    }
     app.globalData.authorized = true;
     app.globalData.userInfo = userInfo;
     app.globalData.userInfo.userId = app.globalData.userId;

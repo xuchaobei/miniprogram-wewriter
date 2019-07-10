@@ -20,15 +20,19 @@ App({
               success: function(res) {        
                 if(res.data.userId) {
                   that.globalData.userId = res.data.userId;
-                  wx.getUserInfo({
-                    success: function (res2) {
-                      that.globalData.authorized = true;
-                      that.globalData.userInfo = res2.userInfo;
-                      that.globalData.userInfo.userId = res.data.userId;
-                      typeof cb == "function" && cb(that.globalData.userInfo)
-                    },
-                    fail: function (error) {
-                      that.globalData.authorized = false
+                  wx.getSetting({
+                    success: function(settingRes) {
+                      if (settingRes.authSetting['scope.userInfo']) {
+                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                        wx.getUserInfo({
+                          success: function (res2) {
+                            that.globalData.authorized = true;
+                            that.globalData.userInfo = res2.userInfo;
+                            that.globalData.userInfo.userId = res.data.userId;
+                            typeof cb == "function" && cb(that.globalData.userInfo)
+                          }
+                        })
+                      }
                     }
                   })
                 }else {
@@ -49,6 +53,6 @@ App({
     userInfo:null,
     authorized: false,
     server:"https://qingcheng.ink"
-    // server: "http://172.16.47.237:3000"
+    // server: "http://localhost:3000"
   }
 })
