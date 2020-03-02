@@ -52,7 +52,7 @@ App({
     userId: null,
     userInfo:null,
     authorized: false,
-    server:"https://qingcheng.ink"
+    server:"https://qingcheng.ink/microapp"
     // server: "http://localhost:3000"
   }
 })
