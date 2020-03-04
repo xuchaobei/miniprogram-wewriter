@@ -49,7 +49,7 @@ Page({
       wid: true,
       type: true,
     }).get().then(res => {
-      if (res.data.length > 0 && userInfo.type !== null) {
+      if (res.data.length > 0 && res.data[0].type !== null) {
         const userInfo = res.data[0];
         wx.redirectTo({
           url: `../home/home?type=${userInfo.type}`,

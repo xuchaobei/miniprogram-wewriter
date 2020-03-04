@@ -171,6 +171,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: errMsg,
+        showCancel: false,
       });
       return false;
     }

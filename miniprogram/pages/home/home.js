@@ -63,15 +63,19 @@ Page({
     }).where({
       status: 1,
     }).orderBy('createDate', 'desc').get().then(res => {
-      const courseData = res.data; 
+      const activeCourseData = res.data; 
+      const oldCourses = this.data.userInfo.courses;
       this.setData({
-        courses: courseData.map(item => ({
+        courses: activeCourseData.map(item => ({
           name: item.name,
-          value: item.name
+          value: item.name,
+          checked: oldCourses && oldCourses.some(c => {
+            return item.name === c
+          })
         })),
-        oldCourses: this.data.userInfo.courses ?
-          this.data.userInfo.courses.filter(item => {
-            return courseData.every(c => {
+        oldCourses: oldCourses ?
+          oldCourses.filter(item => {
+            return activeCourseData.every(c => {
               return c.name !== item 
             })
           }) : []
