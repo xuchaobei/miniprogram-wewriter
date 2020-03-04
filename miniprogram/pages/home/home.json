@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "wux-icon": "../../lib/icon/index",
+    "wux-tabbar": "../../lib/tabbar/index",
+    "wux-tabbar-item": "../../lib/tabbar-item/index",
+    "wux-image": "../../lib/image/index",
+    "wux-prompt": "../../lib/prompt/index"
+  }
+}

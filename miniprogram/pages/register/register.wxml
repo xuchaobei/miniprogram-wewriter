@@ -1,0 +1,84 @@
+<!--miniprogram/pages/register/register.wxml-->
+<view>
+  <form bindsubmit="bindFormSubmit" bindreset="formReset" class="list">
+    <view class="list-item">
+      <view class="title">您的微信号：
+        <view class="instruction" bindtap="bindShowWid">如何查看微信号</view>
+      </view>
+      <input name="wid" value="{{wid}}" placeholder="注意：不要填写成手机号、昵称" />
+    </view>
+    <view class="list-item">
+      <view class="title">微信群昵称：</view>
+      <input name="nickName" value="{{nickName}}" />
+    </view>
+    <view wx:if="{{type === 1}}" class="list-item">
+      <view class="title">您所在的会员群(如不清楚可咨询助教)：</view>
+      <radio-group name="group" class="radio-group">
+        <radio class="radio" wx:for-items="{{groupList}}" wx:key="name" value="{{item.name}}" checked="{{item.value === group}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+    <view class="list-item">
+      <view class="title">您的性别：</view>
+      <radio-group name="gender" class="radio-group">
+        <radio class="radio" wx:for-items="{{genderList}}" wx:key="name" value="{{item.name}}" checked="{{item.value === gender}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+    <view class="list-item">
+      <view class="title">您的身份：</view>
+      <radio-group name="role" class="radio-group">
+        <radio class="radio" wx:for-items="{{roleList}}" wx:key="name" value="{{item.name}}" checked="{{item.value === role}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+    <view class="list-item">
+      <view class="title">您的职业：</view>
+      <input name="profession" value="{{profession}}" />
+    </view>
+    <view class="list-item">
+      <view class="title">所在城市：</view>
+      <picker mode="region" bindchange="bindRegionChange" name="region" value="{{region}}" custom-item="{{customItem}}">
+        <view class="region-picker" wx:if="{{region.length !== 3}}">请选择</view>
+        <view class="region-picker" wx:else>
+          当前选择：
+          <text>{{region[0]}}，{{region[1]}}，{{region[2]}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class="list-item">
+      <view class="title">您的年龄段：</view>
+      <radio-group name="age" class="radio-group">
+        <radio class="radio" wx:for-items="{{ageList}}" wx:key="name" value="{{item.name}}" checked="{{item.value === age}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+    <view class="list-item" wx:if="{{type === 2}}">
+      <view class="title">报名的训练营：</view>
+      <checkbox-group class="courses-picker" name="courses">
+        <label class="checkbox" wx:for="{{courses}}" wx:key="value">
+          <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </checkbox-group>
+    </view>
+    <view class="list-item">
+      <view class="title">您的简介：</view>
+      <textarea name="profile" value="{{profile}}" maxlength="50" placeholder="可以介绍自己的写作经历、优势特长等，不超过50字"></textarea>
+    </view>
+    <view class="list-item">
+      <view class="title">您为什么参加写作营【可多选】：</view>
+      <checkbox-group class="courses-picker" name="reasons">
+        <label class="checkbox" wx:for="{{reasons}}" wx:key="value">
+          <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </checkbox-group>
+    </view>
+    <view class="list-item btn-area">
+      <button formType="submit">提交</button>
+    </view>
+  </form>
+</view>

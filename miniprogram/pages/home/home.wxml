@@ -1,0 +1,109 @@
+<!--miniprogram/pages/register/register.wxml-->
+<view class="page">
+  <view class="container" wx:if="{{currentTab === 'profile'}}">
+    <view class="list">
+      <view class="list-item center">
+        <view>
+          <image class="avatar" mode="aspectFit" src="{{wxUserInfo.avatarUrl}}" />
+        </view>
+        <view class="text">{{wxUserInfo.nickName}}</view>
+      </view>
+      <view class="list-item">
+        <view class="title">微信号：
+          <text class="text">{{userInfo.wid}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">微信群昵称：
+          <text class="text">{{userInfo.nickName}}</text>
+        </view>
+      </view>
+      <view class="list-item" wx:if="{{type===1}}">
+        <view class="title">会员群：
+          <text class="text">{{userInfo.group}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">性别：
+          <text class="text">{{userInfo.gender}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">身份：
+          <text class="text">{{userInfo.role}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">职业：
+          <text class="text">{{userInfo.profession}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">所在城市：
+          <text class="text">{{userInfo.region[0]}} - {{userInfo.region[1]}} - {{userInfo.region[2]}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">年龄段：
+          <text class="text">{{userInfo.age}}</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="title">个人简介:</view>
+        <view class="text">{{userInfo.profile}}</view>
+      </view>
+      <view class="list-item">
+        <button class="btn" bindtap="bindModifyUserInfo">修改信息</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="container" wx:if="{{currentTab === 'course'}}">
+    <block wx:if="{{type !== 1}}">
+      <wux-prompt visible="{{true}}" title="该模块只对年度会员开放" />
+    </block>
+    <block wx:else>
+      <view class="center" bindtap="previewCourse">
+        <image class="img-course" mode="aspectFit" src="../../images/course.jpeg"></image>
+      </view>
+
+      <view class="list">
+        <view class="list-item">
+          <view class="title">可选课程</view>
+          <checkbox-group class="courses-picker" name="courses" bindchange="bindChangeCourse">
+            <label class="checkbox" wx:for="{{courses}}" wx:key="value">
+              <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+            </label>
+          </checkbox-group>
+        </view>
+      </view>
+      <view class="list">
+        <view class="list-item">
+          <view class="title">已学课程</view>
+          <block wx:for="{{oldCourses}}">
+            <view class="text">{{item}}</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="container" wx:if="{{currentTab === 'publication'}}">
+    <wux-prompt visible="{{true}}" title="该功能暂未开放" />
+  </view>
+
+  <wux-tabbar defaultCurrent="profile" position="bottom" theme="positive" bind:change="bindChangeTab">
+    <wux-tabbar-item key="profile" title="个人信息">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="course" title="课程列表">
+      <wux-icon wux-class="icon" type="ios-apps" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-apps" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item key="publication" title="上稿登记">
+      <wux-icon wux-class="icon" type="ios-journal" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-journal" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+  </wux-tabbar>
+</view>

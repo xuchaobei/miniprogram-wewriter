@@ -1,0 +1,29 @@
+.list {
+  margin-top: 40rpx;
+  background-color: #f8f8f8;
+}
+
+.banner {
+  width: 100%;
+}
+
+.btn {
+  margin-top: 60rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: white;
+  background-color: rgb(35, 100, 200);
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.custom-cell {
+  font-weight: bold;
+}
+
+.wux-cell-group__hd {
+  font-weight: bold !important;
+  font-size: 34rpx !important;
+  color: blue !important;
+}

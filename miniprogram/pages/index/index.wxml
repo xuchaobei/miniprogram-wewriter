@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="page">
+	<wux-loading id="wux-loading" />
+	<image class="banner" mode="widthFix" src="../../images/banner.jpeg"></image>
+	<view class="container" wx:if="{{!loading}}">
+		<form class="list">
+			<wux-radio-group name="b" value="{{type}}" title="请选择" bind:change="bindChange">
+				<wux-radio title="2020年度会员信息登记" label="" value="{{1}}" />
+				<wux-radio title="单月写作训练营学员信息登记" label="" value="{{2}}" />
+			</wux-radio-group>
+			<button class="btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" size="default">确定</button>
+		</form>
+	</view>
+</view>
