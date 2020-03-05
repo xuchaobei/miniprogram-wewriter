@@ -1,6 +1,6 @@
 <!--miniprogram/pages/register/register.wxml-->
 <view>
-  <form bindsubmit="bindFormSubmit" bindreset="formReset" class="list">
+  <form bindsubmit="bindFormSubmit" class="list">
     <view class="list-item">
       <view class="title">您的微信号：
         <view class="instruction" bindtap="bindShowWid">如何查看微信号</view>
