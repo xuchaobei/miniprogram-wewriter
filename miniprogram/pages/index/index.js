@@ -1,5 +1,7 @@
 //index.js
-import { $wuxLoading } from '../../lib/index'
+import {
+  $wuxLoading
+} from '../../lib/index'
 
 const app = getApp()
 
@@ -8,9 +10,16 @@ Page({
     userInfo: {},
     loading: true,
     type: null,
+    radioList: [{
+      name: "2020年度会员信息登记",
+      value: 1
+    }, {
+      name: "单月写作训练营学员信息登记",
+      value: 2
+    }]
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this.$wuxLoading = $wuxLoading();
     this.$wuxLoading.show({
       text: '数据加载中',
@@ -43,7 +52,7 @@ Page({
 
   },
 
-  checkIfRegistered: function () {
+  checkIfRegistered: function() {
     const db = wx.cloud.database();
     db.collection('members').field({
       wid: true,
@@ -63,14 +72,14 @@ Page({
     });
   },
 
-  bindChange: function (e) {
+  bindChange: function(e) {
     this.setData({
       type: e.detail.value
     })
   },
 
-  bindGetUserInfo: function (e) {
-    if(this.data.type === null) {
+  bindGetUserInfo: function(e) {
+    if (this.data.type === null) {
       wx.showModal({
         title: '提示',
         content: '请先选择登记类型',

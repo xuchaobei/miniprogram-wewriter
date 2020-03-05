@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "wux-loading": "../../lib/loading/index",
-    "wux-radio-group": "../../lib/radio-group/index",
-    "wux-radio": "../../lib/radio/index"
+    "wux-loading": "../../lib/loading/index"
   }
 }
