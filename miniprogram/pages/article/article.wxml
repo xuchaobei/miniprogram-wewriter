@@ -1,0 +1,34 @@
+<!--pages/article/article.wxml-->
+<view>
+  <form bindsubmit="bindFormSubmit" class="list">
+    <view class="list-item">
+      <view class="title">文章标题：</view>
+      <input name="title" value="{{title}}" />
+    </view>
+    <view class="list-item">
+      <view class="title">上稿平台名称：</view>
+      <input name="platform" value="{{platform}}" />
+    </view>
+     <view class="list-item">
+      <view class="title">上稿日期：</view>
+      <picker mode="date" bindchange="bindDateChange" name="date" value="{{date}}">
+        <view class="region-picker" wx:if="{{!date || date.length === 0}}">请选择</view>
+        <view class="region-picker" wx:else>
+          当前选择：
+          <text>{{date}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class="list-item">
+      <view class="title">文章链接：</view>
+      <input name="link" value="{{link}}" />
+    </view>
+    <view class="list-item">
+      <view class="title">稿费(单位：元)：</view>
+      <input name="fee" type="number" value="{{fee}}" />
+    </view>
+    <view class="list-item btn-area">
+      <button formType="submit">提交</button>
+    </view>
+  </form>
+</view>

@@ -88,8 +88,18 @@
     </block>
   </view>
 
-  <view class="container" wx:if="{{currentTab === 'publication'}}">
-    <wux-prompt visible="{{true}}" title="该功能暂未开放" />
+  <view class="container" wx:if="{{currentTab === 'article'}}">
+     <view class="list">
+        <view class="list-item">
+          <view class="title">上稿文章</view>
+          <block wx:for="{{articles}}" wx:key="id">
+            <view class="text">{{index+1}}. {{item.title}}</view>
+          </block>
+          <view class="list-item">
+            <button class="btn" bindtap="bindAddArticle">新增上稿文章</button>
+          </view>
+        </view>
+      </view>
   </view>
 
   <wux-tabbar defaultCurrent="profile" position="bottom" theme="positive" bind:change="bindChangeTab">
@@ -101,7 +111,7 @@
       <wux-icon wux-class="icon" type="ios-apps" size="22" slot="icon-on" />
       <wux-icon wux-class="icon" type="ios-apps" size="22" slot="icon-off" />
     </wux-tabbar-item>
-    <wux-tabbar-item key="publication" title="上稿登记">
+    <wux-tabbar-item key="article" title="上稿登记">
       <wux-icon wux-class="icon" type="ios-journal" size="22" slot="icon-on" />
       <wux-icon wux-class="icon" type="ios-journal" size="22" slot="icon-off" />
     </wux-tabbar-item>

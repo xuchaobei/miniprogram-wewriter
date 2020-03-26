@@ -8,8 +8,9 @@ Page({
     type: null,
     userInfo: {},
     wxUserInfo: {},
-    courses: [],  //可选课程
+    courses: [], //可选课程
     oldCourses: [], //已学课程
+    articles: [],
   },
 
   /**
@@ -18,6 +19,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       type: options.type ? parseInt(options.type) : null,
+      currentTab: options.tab ? options.tab : this.data.currentTab,
       wxUserInfo: getApp().globalData.wxUserInfo
     });
 
@@ -36,13 +38,30 @@ Page({
       courses: true,
       profile: true,
       reasons: true,
+      articles: true,
     }).get().then(res => {
       if (res.data.length > 0) {
         this.setData({
-          userInfo: res.data[0]
+          userInfo: res.data[0],
+          articles: res.data[0].articles || [],
         })
       }
     });
+  },
+
+  onShow: function(e) {
+    if (this.data.currentTab === 'article') {
+      const db = wx.cloud.database();
+      db.collection('members').field({
+        articles: true,
+      }).get().then(res => {
+        if (res.data.length > 0) {
+          this.setData({
+            articles: res.data[0].articles || [],
+          })
+        }
+      });
+    }
   },
 
   bindChangeTab: function(e) {
@@ -63,7 +82,7 @@ Page({
     }).where({
       status: 1,
     }).orderBy('createDate', 'desc').get().then(res => {
-      const activeCourseData = res.data; 
+      const activeCourseData = res.data;
       const oldCourses = this.data.userInfo.courses;
       this.setData({
         courses: activeCourseData.map(item => ({
@@ -76,7 +95,7 @@ Page({
         oldCourses: oldCourses ?
           oldCourses.filter(item => {
             return activeCourseData.every(c => {
-              return c.name !== item 
+              return c.name !== item
             })
           }) : []
       })
@@ -85,7 +104,7 @@ Page({
 
   bindModifyUserInfo: function() {
     const type = this.data.userInfo.type;
-    if(type !== null) {
+    if (type !== null) {
       wx.navigateTo({
         url: `../register/register?type=${type}`,
       })
@@ -120,7 +139,7 @@ Page({
           checked: true
         }
       } else {
-        return { 
+        return {
           ...item,
           checked: false
         }
@@ -167,6 +186,12 @@ Page({
     wx.previewImage({
       current: 'cloud://wewriter-inrjv.7765-wewriter-inrjv-1301437123/course.jpeg', // 当前显示图片的http链接
       urls: ['cloud://wewriter-inrjv.7765-wewriter-inrjv-1301437123/course.jpeg'] // 需要预览的图片http链接列表
+    })
+  },
+
+  bindAddArticle: function(e) {
+    wx.navigateTo({
+      url: `../article/article?docId=${this.data.userInfo._id}`,
     })
   }
 })

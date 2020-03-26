@@ -11,7 +11,7 @@
 	},
 	"appid": "wxdfe5bf8da831d432",
 	"projectname": "wewriter-crm",
-	"libVersion": "2.8.1",
+	"libVersion": "2.8.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
