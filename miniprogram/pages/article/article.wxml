@@ -2,17 +2,25 @@
 <view>
   <form bindsubmit="bindFormSubmit" class="list">
     <view class="list-item">
-      <view class="title">文章标题：</view>
+      <view class="title">文章标题(必填)：</view>
       <input name="title" value="{{title}}" />
     </view>
     <view class="list-item">
-      <view class="title">上稿平台名称：</view>
-      <input name="platform" value="{{platform}}" />
+      <view class="title">上稿平台名称(必填)：</view>
+      <radio-group name="platform" class="radio-group" bindchange="bindPlatformChange">
+        <radio class="radio" wx:for-items="{{platformList}}" wx:key="name" value="{{item.name}}" checked="{{item.value === platform}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
     </view>
-     <view class="list-item">
-      <view class="title">上稿日期：</view>
-      <picker mode="date" bindchange="bindDateChange" name="date" value="{{date}}">
-        <view class="region-picker" wx:if="{{!date || date.length === 0}}">请选择</view>
+    <view class="list-item" wx:if="{{platform==='其他平台'}}">
+      <view class="title"> 其他平台名称：</view>
+      <input name="otherPlatform" value="{{otherPlatform}}" />
+    </view>
+    <view class="list-item">
+      <view class="title">上稿日期(必填)：</view>
+      <picker mode="date" bindchange="bindDateChange" name="date" value="{{date}} ">
+        <view class="region-picker" wx:if="{{!date || date.length === 0 }}">请选择</view>
         <view class="region-picker" wx:else>
           当前选择：
           <text>{{date}}</text>
@@ -24,7 +32,7 @@
       <input name="link" value="{{link}}" />
     </view>
     <view class="list-item">
-      <view class="title">稿费(单位：元)：</view>
+      <view class="title">稿费：</view>
       <input name="fee" type="number" value="{{fee}}" />
     </view>
     <view class="list-item btn-area">
