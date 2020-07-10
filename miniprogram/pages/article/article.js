@@ -13,6 +13,14 @@ Page({
     date: '',
     fee: '',
     articles: [],
+    platformList: [
+      { name: '弘丹公众号/弘丹头条号', value: '弘丹公众号/弘丹头条号' },
+      { name: '青云计划', value: '青云计划' },
+      { name: '爱帝尔/Bookey', value: '爱帝尔/Bookey' },
+      { name: '慈怀读书会', value: '慈怀读书会' },
+      { name: '百度优选计划', value: '百度优选计划' },
+      { name: '其他平台', value: '其他平台' },
+    ],
   },
 
   /**
@@ -56,6 +64,12 @@ Page({
     }
   },
 
+  bindPlatformChange: function(e) {
+    this.setData({
+      platform: e.detail.value
+    })
+  },
+
   bindDateChange: function(e) {
     this.setData({
       date: e.detail.value
@@ -95,11 +109,15 @@ Page({
       return;
     const {
       title,
-      platform,
+      otherPlatform,
       date,
       link,
       fee
     } = e.detail.value;
+    let platform = this.data.platform;
+    if (platform === '其他平台'){
+      platform = otherPlatform;
+    }
     this.saveArticle(title, platform, date, link, fee);
   },
 
