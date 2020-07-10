@@ -72,7 +72,7 @@
           <view class="title">可选课程</view>
           <checkbox-group class="courses-picker" name="courses" bindchange="bindChangeCourse">
             <label class="checkbox" wx:for="{{courses}}" wx:key="value">
-              <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+              <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}<text wx:if="{{item.remark}}" class="course-remark">({{item.remark}})</text>
             </label>
           </checkbox-group>
         </view>

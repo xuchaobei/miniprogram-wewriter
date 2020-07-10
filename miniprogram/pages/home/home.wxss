@@ -46,7 +46,6 @@
 
 .courses-picker label {
   display: block;
-  height: 60rpx;
   line-height: 60rpx;
 }
 
@@ -58,3 +57,8 @@
   margin-left: 10rpx;
   transform: scale(0.8,0.8);
 } 
+
+.course-remark {
+  color: red;
+  font-size: 28rpx;
+}

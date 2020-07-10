@@ -79,6 +79,7 @@ Page({
 
     db.collection('courses').field({
       name: true,
+      remark: true,
     }).where({
       status: 1,
     }).orderBy('createDate', 'desc').get().then(res => {
@@ -88,6 +89,7 @@ Page({
         courses: activeCourseData.map(item => ({
           name: item.name,
           value: item.name,
+          remark: item.remark,
           checked: oldCourses && oldCourses.some(c => {
             return item.name === c
           })
